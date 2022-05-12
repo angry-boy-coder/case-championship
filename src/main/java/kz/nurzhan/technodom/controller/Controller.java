@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class Controller {
     @Autowired
     private RestTemplate restTemplate;
 
-    @PostMapping(value = "/find/available/slot/{id}")
+    @GetMapping(value = "/find/available/slot/{id}")
     public ResponseEntity<List<SlotDTO>> getAvailableSlotsByOrderId(
             @PathVariable Long id
     ) {
@@ -33,6 +34,12 @@ public class Controller {
         } catch (Exception e) {
             System.out.println(e);
         }
+        List<SlotDTO> listOfSlots = service.getAvailableSlotsByOrderDTO(order);
+        return new ResponseEntity<>(listOfSlots, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/find/available/slot")
+    public ResponseEntity<List<SlotDTO>> getAvailableSlotsByOrderId(@Valid @RequestBody OrderDTO order) {
         List<SlotDTO> listOfSlots = service.getAvailableSlotsByOrderDTO(order);
         return new ResponseEntity<>(listOfSlots, HttpStatus.OK);
     }
