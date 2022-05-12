@@ -21,7 +21,7 @@ import java.util.List;
 public class Slot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long slotId;
+    private Long id;
 
     private Timestamp date;
     private String slotName;
@@ -31,7 +31,7 @@ public class Slot {
     private Long notLhaCount;
 
     @OneToMany
-    @JoinColumn(name = "slot_id")
+    @JoinColumn(name = "slotId")
     private List<SlotOrders> slotOrders;
 
     public Long getAvailableLhaCount() {

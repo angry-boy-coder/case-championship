@@ -17,7 +17,7 @@ public class SlotOrders {
     private Long slotId;
 
     @ManyToOne
-    @JoinColumn(name = "slot_id", insertable = false, updatable = false)
+    @JoinColumn(name = "slot", insertable = false, updatable = false)
     private Slot slot;
 
     private Long lhaCount;
